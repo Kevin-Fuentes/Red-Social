@@ -4,7 +4,8 @@ const fs = require("fs-extra");
 const { image, Comment } = require("../models");
 const md5 = require("md5");
 const ctrl = {};
-const sidebar =require('../helpers/sidebar')
+const sidebar =require('../helpers/sidebar');
+const { nextTick } = require("process");
 
 ctrl.index = async (req, res) => {
  let viewModel ={imagen:{}, comments:[]}
@@ -36,7 +37,7 @@ if(imagen){
   await imagen.save();
   res.json({like:imagen.likes})
 }else{
-  res.status(500).jason({errir:'Internal Error'})
+  res.status(500).jason({error:'Internal Error'})
 }
 };
 
@@ -94,16 +95,18 @@ ctrl.delete = async (req, res) => {
   const imagen = await image.findOne({
     filename: { $regex: req.params.images_id }
   });
+  
   if(imagen){
+   
 await fs.unlink(path.resolve('./src/public/upload/'+imagen.filename))
-await Comment.deleteOne({image_id:image._id})
+await Comment.deleteOne({image_id:imagen._id})
 await imagen.remove()
 res.json(true)
-
+res.redirect("/");
 
 
   }
-  
+ 
 
 };
 
