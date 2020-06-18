@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index",
-    "start": "node index.js"
+    "start": "node src/index"
   },
   "keywords": [],
   "author": "Kevin Fuentes <xkevin24x@gmail.com> (https://www.facebook.com/DAPInf)",
