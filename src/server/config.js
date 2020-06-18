@@ -12,7 +12,7 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 
   //setttings
   module.exports = app => {
-  app.set("port", process.env.PORT || 3);
+
   app.set("views", path.join(__dirname, "../views"));
 
   app.engine(

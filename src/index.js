@@ -5,8 +5,7 @@ const app = config(express())
 
 require('./database')
 
-
-app.listen(app.get('port'),'0.0.0.0',()=>{
-console.log('Server on port:',app.get('port'));
-
+ const port = process.env.PORT || 4000
+app.listen(port,'0.0.0.0',()=>{
+     console.log('Conectado en el puerto:',port)
 })
